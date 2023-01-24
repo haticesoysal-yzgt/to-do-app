@@ -26,7 +26,7 @@ const getTodoListFromLocalStorage = () => {
 addBtn.addEventListener("click", (e) => {
   //prevent form submit
   e.preventDefault();
-//user input control
+  //user input control
   if (todoInput.value.trim() === "") {
     alert("Please, enter new todo text!");
     return;
@@ -42,7 +42,7 @@ addBtn.addEventListener("click", (e) => {
   };
   // insertTodoToDB(newTodo)
   createTodo(newTodo);
-//update todo array
+  //update todo array
   todoList.push(newTodo);
   //localStorage todoList Update
   //localStorage vs. SessionStorage vs. Cookies
@@ -78,7 +78,7 @@ const createTodo = (newTodo) => {
 
   //create remove icon
   const removeIcon = document.createElement("i");
-  icon.setAttribute("class", "fas fa-trash");
+  removeIcon.setAttribute("class", "fas fa-trash");
   li.append(removeIcon);
 
   // console.log(li);
@@ -96,26 +96,23 @@ todoUl.addEventListener("click", (e) => {
   if (e.target.classList.contains("fa-check")) {
     // alert("check clicked");
     //update UI
-  e.target.parentElement.classList.toggle("checked");
-  //update array
-  // todoList.map((todo) => {
-  //   if (todo.id == idAttr){
-  //     todo.completed = !todo.completed;
+    e.target.parentElement.classList.toggle("checked");
+    //update array
+    // todoList.map((todo) => {
+    //   if (todo.id == idAttr){
+    //     todo.completed = !todo.completed;
 
-  //   }
-  // });
+    //   }
+    // });
 
-  todoList.forEach((todo) => {
-    if (todo.id == idAttr){
-      todo.completed = !todo.completed;
+    todoList.forEach((todo) => {
+      if (todo.id == idAttr) {
+        todo.completed = !todo.completed;
+      }
+    });
 
-    }
-  });
-
-  //add updated array to localStorage
-  localStorage.setItem("todoList", JSON.stringify(todoList))
-
-
+    //add updated array to localStorage
+    localStorage.setItem("todoList", JSON.stringify(todoList));
   } else if (e.target.classList.contains("fa-trash")) {
     // alert("remove clicked");
     //remove from UI
@@ -124,10 +121,9 @@ todoUl.addEventListener("click", (e) => {
     //id si ile silinmeyenleri filtrele array i update et ==>
     //silineni array den remove//
 
-    todoList = todoList.filter((todo) => todo.id != idAttr)
-    //add to updated array to localStorage 
-  localStorage.setItem("todoList", JSON.stringify(todoList))
-
+    todoList = todoList.filter((todo) => todo.id != idAttr);
+    //add to updated array to localStorage
+    localStorage.setItem("todoList", JSON.stringify(todoList));
   } else {
     alert("other element clicked");
   }
